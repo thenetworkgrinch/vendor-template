@@ -153,7 +153,7 @@ task vendordepJsonZip(type: Zip) {
     archiveBaseName = templateVendorFile
     archiveClassifier = "sources"
 
-    from("$buildDir/$templateVendorFile") {
+    from("$buildDir/repos/$templateVendorFile") {
         into '/'
     }
     dependsOn vendordepJson
@@ -234,13 +234,13 @@ model {
                 version pubVersion
             }
 
-//            vendordep(MavenPublication) {
-//                artifact vendordepJsonZip
-//
-//                artifactId = "${baseArtifactId}-vendordep"
-//                groupId artifactGroupId
-//                version pubVersion
-//            }
+            vendordep(MavenPublication) {
+                artifact vendordepJsonZip
+
+                artifactId = "${baseArtifactId}-vendordep"
+                groupId artifactGroupId
+                version pubVersion
+            }
         }
     }
 }

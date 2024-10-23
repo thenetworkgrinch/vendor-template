@@ -1,6 +1,11 @@
+import org.apache.tools.ant.filters.FixCrLfFilter
+import org.apache.tools.ant.filters.ReplaceTokens
+
 apply plugin: 'maven-publish'
 
 ext.licenseFile = files("$rootDir/LICENSE.txt")
+
+def templateVendorFile = "ExampleVendorJson.json"
 
 def pubVersion = '0.0.1'
 
@@ -154,6 +159,16 @@ publishing {
             url = releasesRepoUrl
         }
     }
+}
+
+// Apply template variables from the vendordep file.
+// Replaces ${VARIABLE} with VARIABLE: value in expand()
+copy {
+    from templateVendorFile
+    into "$releasesRepoUrl/../"
+    expand( version: pubVersion,
+            groupId: artifactGroupId,
+            artifactId: baseArtifactId)
 }
 
 task cleanReleaseRepo(type: Delete) {

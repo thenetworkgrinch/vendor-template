@@ -18,7 +18,7 @@
     "jniDependencies": [
         {
             "groupId": "${groupId}",
-            "artifactId": "${artifactId}-java",
+            "artifactId": "${artifactId}-driver",
             "version": "${version}",
             "skipInvalidPlatforms": true,
             "isJar": false,

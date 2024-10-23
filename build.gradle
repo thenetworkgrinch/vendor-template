@@ -37,6 +37,13 @@ dependencies {
     implementation 'edu.wpi.first.thirdparty.frc2024.opencv:opencv-java:4.8.0-4'
 }
 
+// Setup Javadocs to link back to WPILib docs
+javadoc {
+    options {
+        links 'https://docs.oracle.com/en/java/javase/11/docs/api/', 'https://github.wpilib.org/allwpilib/docs/release/java/'
+    }
+}
+
 // Set up exports properly
 nativeUtils {
   exportsConfigs {

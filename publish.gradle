@@ -132,6 +132,23 @@ task outputJavadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 
+// Apply template variables from the vendordep file.
+// Replaces ${VARIABLE} with VARIABLE: value in expand()
+task vendordepJson() {
+    description = 'Builds the vendordep json file.'
+    group = 'Build'
+    outputs.files("$buildDir/$templateVendorFile")
+
+    copy {
+        from templateVendorFile
+        into "$buildDir/"
+        expand(version: pubVersion,
+                groupId: artifactGroupId,
+                artifactId: baseArtifactId)
+    }
+}
+
+
 artifacts {
     archives sourcesJar
     archives javadocJar
@@ -161,15 +178,6 @@ publishing {
     }
 }
 
-// Apply template variables from the vendordep file.
-// Replaces ${VARIABLE} with VARIABLE: value in expand()
-copy {
-    from templateVendorFile
-    into "$releasesRepoUrl/../"
-    expand( version: pubVersion,
-            groupId: artifactGroupId,
-            artifactId: baseArtifactId)
-}
 
 task cleanReleaseRepo(type: Delete) {
     delete releasesRepoUrl

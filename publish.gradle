@@ -137,17 +137,27 @@ task outputJavadocJar(type: Jar, dependsOn: javadoc) {
 task vendordepJson() {
     description = 'Builds the vendordep json file.'
     group = 'Build'
-    outputs.files("$buildDir/$templateVendorFile")
+    outputs.file("$buildDir/repos/$templateVendorFile")
 
     copy {
         from templateVendorFile
-        into "$buildDir/"
+        into "$buildDir/repos/"
         expand(version: pubVersion,
                 groupId: artifactGroupId,
                 artifactId: baseArtifactId)
     }
 }
 
+task vendordepJsonZip(type: Zip) {
+    destinationDirectory = outputsFolder
+    archiveBaseName = templateVendorFile
+    archiveClassifier = "sources"
+
+    from("$buildDir/$templateVendorFile") {
+        into '/'
+    }
+    dependsOn vendordepJson
+}
 
 artifacts {
     archives sourcesJar
@@ -223,6 +233,14 @@ model {
                 groupId artifactGroupId
                 version pubVersion
             }
+
+//            vendordep(MavenPublication) {
+//                artifact vendordepJsonZip
+//
+//                artifactId = "${baseArtifactId}-vendordep"
+//                groupId artifactGroupId
+//                version pubVersion
+//            }
         }
     }
 }

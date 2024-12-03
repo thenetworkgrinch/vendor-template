@@ -10,8 +10,8 @@ plugins {
 
 // WPILib Version
 ext.wpilibVersion = "2025.+"
-ext.opencvYear = "frc2024"
-ext.opencvVersion = "4.8.0-4"
+ext.openCvYear = "frc2024"
+ext.openCvVersion = "4.8.0-4"
 
 repositories {
   mavenCentral()

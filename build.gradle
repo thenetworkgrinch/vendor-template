@@ -21,7 +21,7 @@ java {
   sourceCompatibility = JavaVersion.VERSION_17
   targetCompatibility = JavaVersion.VERSION_17
 }
-javaVersion = "17"
+var javaVersion = "17"
 
 // Apply C++ configuration
 apply from: 'config.gradle'

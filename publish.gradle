@@ -155,7 +155,6 @@ publishing {
         }
     }
 }
-
 task cleanReleaseRepo(type: Delete) {
     delete releasesRepoUrl
 }

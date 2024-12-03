@@ -9,9 +9,9 @@ nativeUtils {
     wpi {
         configureDependencies {
             wpiVersion = wpilibVersion
-            opencvYear = opencvYear
+            opencvYear = openCvYear
             niLibVersion = "2025.0.0"
-            opencvVersion = opencvVersion
+            opencvVersion = openCvVersion
         }
     }
 }

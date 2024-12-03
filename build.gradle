@@ -21,6 +21,7 @@ java {
   sourceCompatibility = JavaVersion.VERSION_17
   targetCompatibility = JavaVersion.VERSION_17
 }
+javaVersion = "17"
 
 // Apply C++ configuration
 apply from: 'config.gradle'
@@ -45,7 +46,7 @@ dependencies {
 // Setup Javadocs to link back to WPILib docs
 javadoc {
     options {
-        links 'https://docs.oracle.com/en/java/javase/17/docs/api/', 'https://github.wpilib.org/allwpilib/docs/release/java/'
+        links "https://docs.oracle.com/en/java/javase/$javaVersion/docs/api/", 'https://github.wpilib.org/allwpilib/docs/release/java/'
     }
 }
 
